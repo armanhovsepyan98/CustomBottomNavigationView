@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="floating_button_style" parent="Widget.MaterialComponents.Button.OutlinedButton">
+        <item name="android:backgroundTint">@color/blue</item>
+        <item name="iconTint">@color/white</item>
+    </style>
+</resources>

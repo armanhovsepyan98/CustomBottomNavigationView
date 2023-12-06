@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">CustomBottomNavigation</string>
+    <string name="home">Home</string>
+    <string name="place">Place</string>
+    <string name="favorite">Favorite</string>
+    <string name="profile">Profile</string>
+    <string name="camera">Camera</string>
+    <string name="text">Text</string>
+    <string name="mic">Mic</string>
+</resources>
