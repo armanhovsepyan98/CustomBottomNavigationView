@@ -24,31 +24,31 @@ class CurvedBottomNavigationView(context: Context, attrs: AttributeSet? = null) 
     private var mPath: Path? = null
     private var mPaint: Paint? = null
 
-    var firstCurveStartPoint: Point = Point()
-    var firstCurveEndPoint: Point = Point()
-    var firstCurveControlPoint2: Point = Point()
-    var firstCurveControlPoint1: Point = Point()
-    var secondCurveStartPoint: Point = Point()
-    var secondCurveEndPoint: Point = Point()
-    var secondCurveControlPoint1: Point = Point()
-    var secondCurveControlPoint2: Point = Point()
+    private var firstCurveStartPoint: Point = Point()
+    private var firstCurveEndPoint: Point = Point()
+    private var firstCurveControlPoint2: Point = Point()
+    private var firstCurveControlPoint1: Point = Point()
+    private var secondCurveStartPoint: Point = Point()
+    private var secondCurveEndPoint: Point = Point()
+    private var secondCurveControlPoint1: Point = Point()
+    private var secondCurveControlPoint2: Point = Point()
 
     private val curveCircleRadius = 28
     private val curveParam1 = 30
     private val curveStartParam = 30
     private val cornerRadius = dpToPx(28).toFloat()
-    var navigationBarWidth = 0
-    var navigationBarHeight = 0
+    private var navigationBarWidth = 0
+    private var navigationBarHeight = 0
 
 
     companion object {
         private const val DEFAULT_SHADOW_RADIUS = 20f
     }
 
-    var currentSelectedItem: BottomNavigationViewItem? = null
-    var selectedListener: OnBottomNavItemSelectedListener? = null
-    var currentSelectedIndex: Int = 0
-    var data = arrayOf<BottomNavigationData>()
+    private var currentSelectedItem: BottomNavigationViewItem? = null
+    private var selectedListener: OnBottomNavItemSelectedListener? = null
+    private var currentSelectedIndex: Int = 0
+    private var data = arrayOf<BottomNavigationData>()
 
     init {
         LayoutInflater.from(context).inflate(R.layout.bottom_navigation, this, false)
@@ -278,31 +278,31 @@ class CurvedBottomNavigationView(context: Context, attrs: AttributeSet? = null) 
 
     private fun roundedRectPath(
         rect: RectF,
-        _topLeftDiameter: Float,
-        _topRightDiameter: Float,
-        _bottomRightDiameter: Float,
-        _bottomLeftDiameter: Float
+        topLeftDiameter: Float,
+        topRightDiameter: Float,
+        bottomRightDiameter: Float,
+        bottomLeftDiameter: Float
     ): Path {
-        var topLeftDiameter = _topLeftDiameter
-        var topRightDiameter = _topRightDiameter
-        var bottomRightDiameter = _bottomRightDiameter
-        var bottomLeftDiameter = _bottomLeftDiameter
+        var topLeftDim = topLeftDiameter
+        var topRightDim = topRightDiameter
+        var bottomRightDim = bottomRightDiameter
+        var bottomLeftDim = bottomLeftDiameter
         val path = Path()
 
-        topLeftDiameter = if (topLeftDiameter < 0) 0f else topLeftDiameter
-        topRightDiameter = if (topRightDiameter < 0) 0f else topRightDiameter
-        bottomLeftDiameter = if (bottomLeftDiameter < 0) 0f else bottomLeftDiameter
-        bottomRightDiameter = if (bottomRightDiameter < 0) 0f else bottomRightDiameter
+        topLeftDim = if (topLeftDim < 0) 0f else topLeftDim
+        topRightDim = if (topRightDim < 0) 0f else topRightDim
+        bottomLeftDim = if (bottomLeftDim < 0) 0f else bottomLeftDim
+        bottomRightDim = if (bottomRightDim < 0) 0f else bottomRightDim
 
-        path.moveTo(rect.left + topLeftDiameter, rect.top)
-        path.lineTo(rect.right - topRightDiameter, rect.top)
-        path.quadTo(rect.right, rect.top, rect.right, rect.top + topRightDiameter)
-        path.lineTo(rect.right, rect.bottom - bottomRightDiameter)
-        path.quadTo(rect.right, rect.bottom, rect.right - bottomRightDiameter, rect.bottom)
-        path.lineTo(rect.left + bottomLeftDiameter, rect.bottom)
-        path.quadTo(rect.left, rect.bottom, rect.left, rect.bottom - bottomLeftDiameter)
-        path.lineTo(rect.left, rect.top + topLeftDiameter)
-        path.quadTo(rect.left, rect.top, rect.left + topLeftDiameter, rect.top)
+        path.moveTo(rect.left + topLeftDim, rect.top)
+        path.lineTo(rect.right - topRightDim, rect.top)
+        path.quadTo(rect.right, rect.top, rect.right, rect.top + topRightDim)
+        path.lineTo(rect.right, rect.bottom - bottomRightDim)
+        path.quadTo(rect.right, rect.bottom, rect.right - bottomRightDim, rect.bottom)
+        path.lineTo(rect.left + bottomLeftDim, rect.bottom)
+        path.quadTo(rect.left, rect.bottom, rect.left, rect.bottom - bottomLeftDim)
+        path.lineTo(rect.left, rect.top + topLeftDim)
+        path.quadTo(rect.left, rect.top, rect.left + topLeftDim, rect.top)
         path.close()
         return path
     }
